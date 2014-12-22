@@ -1,0 +1,451 @@
+html
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body
+{
+    background-image: url("images/paper.jpg");
+    background-repeat-x: no-repeat;
+    background-size: cover;
+    color: #000;
+    font-family: 'Anonymous Pro';
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Header & Subheader Styles */
+
+#header
+{
+    margin: -10px auto;
+    width: 100%;
+}
+
+#title
+{
+    display: inline-block;
+    font-family: 'Limelight', cursive;
+    font-size: 325%;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+    text-shadow: 1px 2px 1px #888;
+    width: 100%;
+}
+
+#title:hover
+{
+    cursor: pointer;
+}
+
+.line
+{
+    background-color: black;
+    height: 3px;
+    width: 100%;
+}
+
+#subtitle
+{
+    font-size: 110%;
+    font-style: italic;
+    font-weight: bold;
+    min-height: 40px;
+    padding-top: 6px;
+    position: relative;
+    width: 100%;
+}
+
+#motto, #date
+{
+    display: inline-block;
+    letter-spacing: -1px;
+    padding: 0 15px;
+    position: absolute;
+    text-align: left;
+    width: 45%;
+}
+
+#motto
+{
+    left: 10px;
+}
+
+#date
+{
+    right: 10px;
+    text-align: right;
+}
+
+/* Button Styles */
+
+.buttonDiv
+{
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.button
+{
+    background-color: #000;
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px #616161;
+    color: #5EC7CB;
+    cursor: pointer;
+    font-family: 'Anonymous Pro';
+    font-size: 110%;
+    margin: 0 10px 10px 10px;
+    text-align: center;
+}
+
+.button:focus
+{
+    outline:0;
+}
+
+/* Welcome Message Styles */
+
+#welcome
+{
+    background-color: #E2E2E2;
+    border-radius: 3px;
+    border: 3px solid black;
+    box-shadow: 5px 5px 5px #616161;
+    display: none;
+    margin: 20px auto;
+    padding: 15px;
+    text-align: center;
+    width: 50%;
+}
+
+#welcome h2, h4, p
+{
+    margin: 5px 0 10px 0;
+}
+
+#welcome h4
+{
+    margin-top: 15px;
+}
+
+#welcome p
+{
+    color: #a4009d;
+    font-size: 95%;
+    margin-bottom: 5px;
+}
+
+/* Comment Box Styles */
+
+#commentsContainer
+{
+    margin: 10px auto;
+    text-align: center;
+    width: 98%;
+}
+
+.comment
+{
+    background-color: #E2E2E2;
+    border-radius: 3px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px #616161;
+    display: inline-block;
+    margin: 10px;
+    overflow: hidden;
+    padding: 10px;
+    text-align: left;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.comment a
+{
+    color: #009da4;
+}
+
+.user
+{
+    color: #a4009d;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.user, .says
+{
+    display: inline;
+    margin: 0;
+}
+
+.break
+{
+    height: 25px;
+}
+
+/* Star Styles */
+
+.emptyStar, .fullStar, .fullStarTable
+{
+    background-image: url('images/starEmpty.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    display: inline-block;
+    height: 30px;
+    padding-right: 3px;
+    width: 30px;
+}
+
+.emptyStar, .fullStar
+{
+    cursor: pointer;
+}
+
+.fullStar, .fullStarTable
+{
+    background-image: url('images/starFull.png');
+}
+
+.fullStarTable
+{
+    background-size: 20px 20px;
+    height: 20px;
+    vertical-align: middle;
+    width: 20px;
+}
+
+/* Footer and Help Modal Styles */
+
+.footer
+{
+  background-color: #000;
+  bottom: 0;
+  font-size: 12px;
+  opacity: 0.98;
+  padding: 8px;
+  position: fixed;
+  right: 0;
+  width: 100%;
+}
+
+.footer a
+{
+    color: #5EC7CB;
+    font-size: 130%;
+    margin: auto 10px auto 20px;
+}
+
+.footer h2
+{
+    font-family: 'Limelight', cursive;
+    font-size: 240%;
+    margin: 20px auto;
+}
+
+/* Modal Styles */
+
+.modal {
+    -moz-transition: opacity 400ms ease-in;
+    -webkit-transition: opacity 400ms ease-in;
+    background: rgba(0,0,0,0.8);
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    transition: opacity 400ms ease-in;
+    z-index: 99999;
+}
+
+.modal:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal > div {
+    background: #000;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    border-radius: 3px;
+    box-shadow: 10px 10px 10px black;
+    color: #000;
+    font-weight: bold;
+    height: 40%;
+    margin: 20% auto;
+    overflow: scroll;
+    padding: 5px 20px 13px 20px;
+    position: relative;
+    width: 40%;
+    word-wrap: break-word;
+}
+
+.modal > div a
+{
+    color: #000;
+    font-size: 175%;
+    margin-right: -2%;
+}
+
+.modal > div p
+{
+    font-size: 115%;
+}
+
+.close {
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    right: 4%;
+    text-align: center;
+    text-decoration: none;
+    top: 2%;
+}
+
+/* Leaderboard Modal Styles */
+
+#leaderboardModal > div
+{
+    height: 60%;
+    margin: 10% auto;
+    width: 70%;
+}
+
+#ratingTableLink, #helpLink
+{
+    display: inline-block;
+}
+
+#ratingTableLink
+{
+    float: left;
+    text-align: left;
+}
+
+table
+{
+    margin: 0 auto;
+    table-layout: fixed;
+    width: 90%;
+}
+
+table, th, tr, td
+{
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+}
+
+th
+{
+    background-color: #a4009d;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.commentText
+{
+    width: 55%;
+}
+
+th, tr
+{
+    height: 30px;
+}
+
+td
+{
+    background-color: #fff;
+    min-width: 112px;
+    padding: 5px;
+}
+
+.ascending, .descending
+{
+    background-image: url('images/ascending.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 10px;
+    padding-right: 3px;
+    vertical-align: middle;
+    width: 10px;
+}
+
+.descending
+{
+    background-image: url('images/descending.png');
+}
+
+/* Help Modal Styles */
+
+#helpLink
+{
+    float: right;
+    text-align: right;
+}
+
+#helpModal h2
+{
+    margin: 15px auto;
+}
+
+#helpModal h3
+{
+    font-size: 140%;
+    margin: 0;
+}
+
+#helpModal ul
+{
+    list-style-type: none;
+    margin-top: 5px;
+}
+
+#helpModal li
+{
+    cursor: pointer;
+    font-size: 115%;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
+.li1
+{
+    color: #009da4;
+}
+
+.li2
+{
+    color: #a4009d;
+}
+
+#helpTopics
+{
+    display: none;
+}
+
+#back
+{
+    color: #a4009d;
+    cursor: pointer;
+    display: block;
+    font-size: 120%;
+    margin: 10px auto 10px 0;
+    text-align: left;
+    text-decoration: underline;
+}

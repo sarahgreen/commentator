@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>
+            Commentator
+        </title>
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="images/favicon.png"> 
+        <!--Google fonts-->
+        <link href="http://fonts.googleapis.com/css?family=Limelight" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Anonymous+Pro:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+        <!-- app styles -->
+        <link rel="stylesheet" type="text/css" href="styles.css"> 
+        <!-- jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+        <!-- masonry plugin -->
+        <script src="masonry.pkgd.min.js"></script> 
+        <!-- app script -->
+        <script src="script.js"></script> 
+
+    </head>
+
+    <body>
+
+        <!-- header -->
+        <div id="header">
+            <div id="title">
+                    Commentator
+            </div>
+        </div>
+
+        <!-- subheader -->
+        <div class="line"></div>
+
+        <div id="subtitle">
+
+            <div id="motto">
+                "All the Comments<br>You Want to Read"
+            </div>
+
+            <div id="date"></div>
+
+        </div>
+
+        <div class="line"></div>
+
+        <!-- search buttons -->
+        <div class="buttonDiv">
+
+            <button class="button" id="buttonDate">Comments from a day</button>
+            <button class="button" id="buttonRand">Random comments</button>
+
+        </div>
+
+        <!-- welcome message and helpful info -->
+        <div id="welcome">
+
+            <h2>Welcome to the Commentator App!</h2>
+
+            <p class="p1"><b>Use this app to get comments from articles on the New York Times Online.</b></p>
+
+            <h4>Getting started:</h4>
+
+            <p class="p2">Click <b>"Comments from a day"</b> to get comments posted on a certain day.</p>
+
+            <p class="p1">Click <b>"Random comments"</b> to get a set of random comments.</p>
+
+            <h4>Tips:</h4>
+
+            <p class="p2">Click a <b>commenter's name</b> to view more comments by that person.</p>
+
+            <p class="p1">Click the <b>stars</b> to rate a comment.</p>
+
+            <p class="p2">Click the <b>"Comment leaderboard"</b> link in the bottom left corner to view a table of comments you've rated. Click the arrows in the column headers to <b>sort</b> comments by rating or author.</p>
+
+            <p class="p1">Click the buttons at any time to retrieve more comments.</p>
+
+            <p class="p2">Other questions or problems? Click the <b>"Need help?"</b> link in the bottom right corner.</p>
+
+        </div>
+
+        <!-- comments -->
+        <div id="commentsContainer"></div>
+
+        <div class="break"></div>
+        
+        <!-- footer -->
+        <div class="footer">
+
+            <!-- link to modal with leaderboard of comment ratings-->
+            <div id="ratingTableLink">
+                <a href="#leaderboardModal">Comment leaderboard</a>
+            </div>
+
+            <!-- modal with leaderboard of comment ratings-->
+            <div id="leaderboardModal" class="modal">
+
+                <div>
+
+                    <!-- 'X' button to close modal -->
+                    <a href="#close" title="Close" class="close">X</a>
+
+                    <h2>Comment Leaderboard</h2>
+
+                    <!-- table of comment ratings-->
+                    <table id="ratings">
+
+                        <thead>
+
+                            <th class="commentText">Comment</th>
+
+                            <th>Author<span id="authorAscending" class="ascending"></span><span id="authorDescending" class="descending"></span></th>
+
+                            <th>Rating<span id="starsAscending" class="ascending"></span><span id="starsDescending" class="descending"></span></th>
+
+                        </thead>
+
+                        <tbody class="tbody"></tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <!-- link to modal with help topics -->
+            <div id="helpLink">
+                <a href="#helpModal">Need help?</a>
+            </div>
+
+            <!-- modal with help topics -->
+            <div id="helpModal" class="modal">
+
+                <div>
+
+                    <!-- 'X' button to close modal -->
+                    <a href="#close" title="Close" class="close">X</a>
+
+                    <!-- help welcome message -->
+                    <div id="helpWelcome">
+
+                        <h2>Commentator Help</h2>
+
+                        <h3>What do you need help with?</h3>
+
+                        <!-- list of help topics that link to solutions -->
+                        <ul>
+
+                            <li id="li1" class="li1">Retrieving comments</li>
+
+                            <li id="li2" class="li2">Finding a related New York Times article</li>
+
+                            <li id="li3" class="li1">Rating comments</li>
+
+                            <li id="li4" class="li2">Viewing my comment ratings</li>
+
+                        </ul>
+
+                        <br>
+
+                        <!-- contact and general app information -->
+                        <p>For further help and support, email team@commentator.com.</p>
+
+                        <p>This application was built by Sarah Green for the User Interface Design course at Columbia University in Fall 2014.</p>
+
+                    </div>
+
+                    <!-- solutions to help topics -->
+                    <div id="helpTopics">
+
+                        <!-- button to go back to list of help topics -->
+                        <div class="back"><a id="back">Back</a></div>
+
+                        <!-- help for retrieving comments -->
+                        <div class="topic" id="getCommentHelp">
+                            <p>Use the buttons at the top of the page to retrieve comments posted on articles on the New York Times Online.</p>
+                            <p>Click "Comments from a day" to get comments posted on a certain day. Then enter a date in the box that pops up, using YYYYMMDD (YearMonthDay) format.</p>
+                            <p>Click "Random comments" to get a set of random comments.</p>
+                            <p>Click a commenter's name to retrieve more comments by that person.</p>
+                        </div>
+
+                        <!-- help for retrieving relevant NYT articles -->
+                        <div class="topic" id="getArticleHelp">
+                            <p>Click the link below "Original Article" in a comment block to see the article on which that comment was posted.</p>
+                            <p>The article will be displayed in a new window.</p>
+                            <p>On account of the New York Times' subscription policies, not all articles may be fully visible to all users.</p>
+                            <p>Due to the New York Times' privacy restrictions, comments generated based on a user's display name cannot link back to the original article.</p>
+                        </div>
+
+                        <!-- help for rating comments -->
+                        <div class="topic" id="ratingHelp">
+                            <p>Use the stars in a comment box to rate that comment.</p>
+                            <p>Comments may be rated from 0-4 stars.</p>
+                            <p>Check the "Comments leaderboard" to view a summary of all the comments rated during this session.</p>
+                        </div>
+
+                        <!-- help for accessing the rated comments leaderboard -->
+                        <div class="topic" id="leaderboardHelp">
+                            <p>Click the "Comment leaderboard" link in the bottom left corner of the footer to see a table of all the comments you've rated.</p>
+                            <p>Each leaderboard table row includes a snippet of the comment text, the comment author (based on their New York Times display name), and your rating of that comment.</p>
+                            <p>Sort the leaderboard alphabetically by author name or numerically by rating, ascending or descending, by clicking the arrows next to "Author" and "Rating" in the leaderboard table column headers.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>
