@@ -174,10 +174,7 @@ body
 
 .user
 {
-    color: #a4009d;
-    cursor: pointer;
     font-weight: bold;
-    text-decoration: underline;
 }
 
 .user, .says

@@ -1,8 +1,9 @@
 // Global variables
-var commentsKey = '79d51927999049d8504147f1ce757d7d:10:70171363';
-var byDateUrl1 = 'http://api.nytimes.com/svc/community/v2/comments/by-date/';
-var byDateUrl2 = '.jsonp?api-key=' + commentsKey;
-var randomUrl = 'http://api.nytimes.com/svc/community/v2/comments/random.jsonp?api-key=' + commentsKey;
+var commentsKey = '3a7e9a92eb614894a33717666ba3660e';
+var byDateUrl1 = 'http://api.nytimes.com/svc/community/v3/user-content/by-date.json?date=';
+var byDateUrl2 = '&api-key=' + commentsKey;
+var articleUrl = 'http://api.nytimes.com/svc/community/v3/user-content/url.json?url=';
+var articleUrl2 = '&api-key=' + commentsKey;
 var userUrl1 = 'http://api.nytimes.com/svc/community/v2/comments/user/id/';
 var userUrl2 = '.jsonp?api-key=' + commentsKey;
 var users = [];
@@ -46,11 +47,8 @@ var getCommentsByDate = function(date) {
   			var cur = data[i];
   			var user;
   			var comment;
-  			var articleURL;
-	  		var userID = cur.userComments.substring(50, (cur.userComments.length - 4));
-  			while (userID == undefined)
-	  			continue;
-	  		var displayName = cur.display_name;
+	  		var userID = cur.userId;
+	  		var displayName = cur.userDisplayName;
 	  		if ((displayName != undefined) && (displayName.length == 0))
 	  			displayName = 'Anonymous';
 	  		var userIdx = userExists(userID);
@@ -66,7 +64,7 @@ var getCommentsByDate = function(date) {
 	  			user = users[userIdx];
 	  		}
   			var comment = cur.commentBody;
-  			var article = cur.articleURL;
+  			var article = cur.assetURL;
   			var appendStr = '';
   			// Prepend a box with the comment and relevant information to comments container in HTML
   			appendStr += '<div id="' + comments.length + '" class="comment ' + userID + '"><p class="user">' + displayName + '</p><p class="says"> says:</p><br><br>' + comment + '<br><br><b>Original article:</b><br><a target=_blank href="' + article + '">' + article + '</a><br><br><div class="emptyStar" id="' + comments.length + '_star1"></div><div class="emptyStar" id="' + comments.length + '_star2"></div><div class="emptyStar" id="' + comments.length + '_star3"></div><div class="emptyStar" id="' + comments.length + '_star4"></div></div>';
@@ -84,12 +82,13 @@ var getCommentsByDate = function(date) {
   	});
 }
 
-// Retrieve random comments
-var getRandomComments = function() {
+// Retrieve article comments
+var getArticleComments = function(articleLink) {
 	// Make the API request
+	var u = articleUrl + articleLink + articleUrl2;
 	$.ajax({
 		type: 'GET',
-		url: randomUrl,
+		url: u,
 		dataType: 'jsonp',
 		jsonp: 'callback',
 	})
@@ -98,13 +97,11 @@ var getRandomComments = function() {
   		var data = res.results.comments;
   		for (var i = 0; i < data.length; i++) {
   			var cur = data[i];
+  			console.log(cur);
   			var user;
   			var comment;
-  			var articleURL;
-	  		var userID = cur.userComments.substring(50, (cur.userComments.length - 4));
-  			while (userID == undefined)
-	  			continue;
-	  		var displayName = cur.display_name;
+	  		var userID = cur.userId;
+	  		var displayName = cur.userDisplayName;
 	  		if ((displayName != undefined) && (displayName.length == 0))
 	  			displayName = 'Anonymous';
 	  		var userIdx = userExists(userID);
@@ -120,7 +117,7 @@ var getRandomComments = function() {
 	  			user = users[userIdx];
 	  		}
   			var comment = cur.commentBody;
-  			var article = cur.articleURL;
+  			var article = articleLink;
   			var appendStr = '';
   			// Prepend a box with the comment and relevant information to comments container in HTML
   			appendStr += '<div id="' + comments.length + '" class="comment ' + userID + '"><p class="user">' + displayName + '</p><p class="says"> says:</p><br><br>' + comment + '<br><br><b>Original article:</b><br><a target=_blank href="' + article + '">' + article + '</a><br><br><div class="emptyStar" id="' + comments.length + '_star1"></div><div class="emptyStar" id="' + comments.length + '_star2"></div><div class="emptyStar" id="' + comments.length + '_star3"></div><div class="emptyStar" id="' + comments.length + '_star4"></div></div>';
@@ -162,7 +159,7 @@ var getCommentsByUser = function(userID) {
   				displayName = 'Anonymous';
   			var comment = cur.commentBody;
   			var article = '';
-  			if (comment.articleURL != undefined) {
+  			if (comment.assetURL != undefined) {
   				article = '<br><br><b>Original article:</b><br><a target=_blank href="' + article + '">' + article + '</a>';
   			}
   			var appendStr = '';
@@ -278,19 +275,24 @@ $(document).ready(function() {
 
 	// On clicking "Comments from a day" button, prompt for a date and make an API request for comments
 	$('#buttonDate').click(function() {
-		var date = prompt('Please enter a date in the format "YYYYMMDD" (YearMonthDay).', 'YYYYMMDD');
-		var isValid = '[1-2][0-9][0-9][0-9][0-1][0-9][0-3][0-9]';
+		var date = prompt('Please enter a date in the format "YYYY-MM-DD" (Year-Month-Day).', 'YYYY-MM-DD');
+		var isValid = '[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]';
 		while (date.match(isValid) == null) {
-			date = prompt('Please enter a date in the format "YYYYMMDD" (YearMonthDay).', 'YYYYMMDD');
+			date = prompt('Please enter a date in the format "YYYY-MM-DD" (Year-Month-Day).', 'YYYY-MM-DD');
 		}
 		$('#welcome').slideUp(600);
 		getCommentsByDate(date);
 	});
 
-	// On clicking "Random comments" button, make an API request for random comments
-	$('#buttonRand').click(function() {
+	// On clicking "Comments from an article" button, make an API request for article comments
+	$('#buttonArticle').click(function() {
+		link = prompt('Please enter a link to a NYT article');
+		/*var isValid = '^[a-zA-Z0-9\-\.]+\.(com|org|net|mil|edu|COM|ORG|NET|MIL|EDU)$';
+		while (link.match(isValid) == null) {
+			link = prompt('Please enter a valid link to a NYT article.');
+		}*/
 		$('#welcome').slideUp(600);
-		getRandomComments();
+		getArticleComments(link);
 	});
 
 	// On clicking a user's name, make an API request for more comments by that user
