@@ -12,7 +12,7 @@ body
     background-repeat-x: no-repeat;
     background-size: cover;
     color: #000;
-    font-family: 'Anonymous Pro';
+    font-family: 'Inconsolata', monospace;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -30,12 +30,11 @@ body
 #title
 {
     display: inline-block;
-    font-family: 'Limelight', cursive;
+    font-family: 'Yeseva One', cursive;
     font-size: 325%;
     font-weight: bold;
     margin: 20px 0;
     text-align: center;
-    text-shadow: 1px 2px 1px #888;
     width: 100%;
 }
 
@@ -83,6 +82,11 @@ body
     text-align: right;
 }
 
+a 
+{
+    text-decoration: none;
+}
+
 /* Button Styles */
 
 .buttonDiv
@@ -94,13 +98,12 @@ body
 
 .button
 {
-    background-color: #000;
+    background-color: #2b2b2b;
     border-radius: 3px;
     border: 1px solid black;
-    box-shadow: 5px 5px 5px #616161;
-    color: #5EC7CB;
+    color: #76b3cc;
     cursor: pointer;
-    font-family: 'Anonymous Pro';
+    font-family: 'Inconsolata';
     font-size: 110%;
     margin: 0 10px 10px 10px;
     text-align: center;
@@ -108,7 +111,7 @@ body
 
 .button:focus
 {
-    outline:0;
+    outline: 0;
 }
 
 /* Welcome Message Styles */
@@ -118,7 +121,6 @@ body
     background-color: #E2E2E2;
     border-radius: 3px;
     border: 3px solid black;
-    box-shadow: 5px 5px 5px #616161;
     display: none;
     margin: 20px auto;
     padding: 15px;
@@ -138,7 +140,6 @@ body
 
 #welcome p
 {
-    color: #a4009d;
     font-size: 95%;
     margin-bottom: 5px;
 }
@@ -157,7 +158,6 @@ body
     background-color: #E2E2E2;
     border-radius: 3px;
     border: 2px solid black;
-    box-shadow: 5px 5px 5px #616161;
     display: inline-block;
     margin: 10px;
     overflow: hidden;
@@ -169,7 +169,7 @@ body
 
 .comment a
 {
-    color: #009da4;
+    color: #76b3cc;
 }
 
 .user
@@ -181,6 +181,11 @@ body
 {
     display: inline;
     margin: 0;
+}
+
+.user:hover
+{
+    cursor: pointer;
 }
 
 .break
@@ -224,10 +229,10 @@ body
 
 .footer
 {
-  background-color: #000;
+  background-color: #2b2b2b;
   bottom: 0;
   font-size: 12px;
-  opacity: 0.98;
+  opacity: 1;
   padding: 8px;
   position: fixed;
   right: 0;
@@ -236,14 +241,14 @@ body
 
 .footer a
 {
-    color: #5EC7CB;
+    color: #76b3cc;
     font-size: 130%;
     margin: auto 10px auto 20px;
 }
 
 .footer h2
 {
-    font-family: 'Limelight', cursive;
+    font-family: 'Yeseva One', cursive;
     font-size: 240%;
     margin: 20px auto;
 }
@@ -277,7 +282,6 @@ body
     background: -o-linear-gradient(#fff, #999);
     background: -webkit-linear-gradient(#fff, #999);
     border-radius: 3px;
-    box-shadow: 10px 10px 10px black;
     color: #000;
     font-weight: bold;
     height: 40%;
@@ -333,7 +337,7 @@ body
 
 table
 {
-    margin: 0 auto;
+    margin: 20px auto 10px auto;
     table-layout: fixed;
     width: 90%;
 }
@@ -347,7 +351,6 @@ table, th, tr, td
 
 th
 {
-    background-color: #a4009d;
     font-size: 150%;
     font-weight: bold;
 }
@@ -398,37 +401,22 @@ td
 
 #helpModal h2
 {
-    margin: 15px auto;
-}
-
-#helpModal h3
-{
-    font-size: 140%;
-    margin: 0;
+    margin: 15px auto 5px auto;
 }
 
 #helpModal ul
 {
     list-style-type: none;
-    margin-top: 5px;
+    margin: 10px auto 15px auto;
 }
 
 #helpModal li
 {
+    color: #76b3cc;
     cursor: pointer;
     font-size: 115%;
     margin-bottom: 5px;
-    text-decoration: underline;
-}
-
-.li1
-{
-    color: #009da4;
-}
-
-.li2
-{
-    color: #a4009d;
+    text-decoration: none;
 }
 
 #helpTopics
@@ -438,11 +426,11 @@ td
 
 #back
 {
-    color: #a4009d;
+    color: #76b3cc;
     cursor: pointer;
     display: block;
-    font-size: 120%;
-    margin: 10px auto 10px 0;
+    font-size: 140%;
+    margin: 10px auto 15px 0;
     text-align: left;
-    text-decoration: underline;
+    text-decoration: none;
 }

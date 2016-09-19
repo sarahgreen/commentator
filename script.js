@@ -1,11 +1,8 @@
 // Global variables
-var commentsKey = '3a7e9a92eb614894a33717666ba3660e';
-var byDateUrl1 = 'http://api.nytimes.com/svc/community/v3/user-content/by-date.json?date=';
-var byDateUrl2 = '&api-key=' + commentsKey;
-var articleUrl = 'http://api.nytimes.com/svc/community/v3/user-content/url.json?url=';
-var articleUrl2 = '&api-key=' + commentsKey;
-var userUrl1 = 'http://api.nytimes.com/svc/community/v2/comments/user/id/';
-var userUrl2 = '.jsonp?api-key=' + commentsKey;
+var key = '3a7e9a92eb614894a33717666ba3660e';
+var byDateUrl = 'http://api.nytimes.com/svc/community/v3/user-content/by-date.json?api-key=' + key + '&date=';
+var articleUrl = 'http://api.nytimes.com/svc/community/v3/user-content/url.json?api-key=' + key + '&url=';
+var userUrl = 'http://api.nytimes.com/svc/community/v3/user-content/user.json?api-key=' + key + '&userID=';
 var users = [];
 var comments = [];
 var ratedComments = [];
@@ -32,7 +29,8 @@ var userExists = function(id) {
 // Retrieve comments from a specified date
 var getCommentsByDate = function(date) {
 	// Construct the URL for the API request
-	var u = byDateUrl1 + date + byDateUrl2;
+	var u = byDateUrl + date;
+	console.log(u);
 	// Make the API request
 	$.ajax({
 		type: 'GET',
@@ -47,7 +45,7 @@ var getCommentsByDate = function(date) {
   			var cur = data[i];
   			var user;
   			var comment;
-	  		var userID = cur.userId;
+	  		var userID = cur.userID;
 	  		var displayName = cur.userDisplayName;
 	  		if ((displayName != undefined) && (displayName.length == 0))
 	  			displayName = 'Anonymous';
@@ -85,7 +83,7 @@ var getCommentsByDate = function(date) {
 // Retrieve article comments
 var getArticleComments = function(articleLink) {
 	// Make the API request
-	var u = articleUrl + articleLink + articleUrl2;
+	var u = articleUrl + articleLink;
 	$.ajax({
 		type: 'GET',
 		url: u,
@@ -97,10 +95,9 @@ var getArticleComments = function(articleLink) {
   		var data = res.results.comments;
   		for (var i = 0; i < data.length; i++) {
   			var cur = data[i];
-  			console.log(cur);
   			var user;
   			var comment;
-	  		var userID = cur.userId;
+	  		var userID = cur.userID;
 	  		var displayName = cur.userDisplayName;
 	  		if ((displayName != undefined) && (displayName.length == 0))
 	  			displayName = 'Anonymous';
@@ -138,7 +135,7 @@ var getArticleComments = function(articleLink) {
 // Retrieve comments from a specified user
 var getCommentsByUser = function(userID) {
 	// Construct the URL for the API request
-	var u = userUrl1 + userID + userUrl2;
+	var u = userUrl + userID;
 	// Make the API request
 	$.ajax({
 		type: 'GET',
@@ -151,16 +148,15 @@ var getCommentsByUser = function(userID) {
   		var data = res.results.comments;
   		for (var i = 0; i < data.length; i++) {
   			var cur = data[i];
-  			var userID = cur.userComments.substring(50, (cur.userComments.length - 4));
-  			while (userID == undefined)
-	  			continue;
-  			var userDisplayName = cur.display_name;
+  			var userID = cur.userID;
+  			var userDisplayName = cur.userSubmittedDisplayName;
   			if (userDisplayName.length == 0)
-  				displayName = 'Anonymous';
+  				userDisplayName = 'Anonymous';
   			var comment = cur.commentBody;
   			var article = '';
-  			if (comment.assetURL != undefined) {
-  				article = '<br><br><b>Original article:</b><br><a target=_blank href="' + article + '">' + article + '</a>';
+  			if (cur.asset.assetURL != undefined) {
+  				var link = cur.asset.assetURL;
+  				article = '<br><br><b>Original article:</b><br><a target=_blank href="' + link + '">' + link + '</a>';
   			}
   			var appendStr = '';
   			// Prepend a box with the comment and relevant information to comments container in HTML
@@ -347,7 +343,7 @@ $(document).ready(function() {
 		}
 		// Generate a snippet of the comment with its author and rating, for the leaderboard
 		var comment = comments[$(this).parent()[0].id];
-		var stars = '<p style="display: inline-block; vertical-align: middle;">' + count + '</p>';
+		var stars = '';
 		if (count != 0) {
 			for (var i = 0; i < count; i++) {
 				stars += '<div class="fullStarTable"></div>';
