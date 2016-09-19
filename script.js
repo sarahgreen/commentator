@@ -390,7 +390,7 @@ $(document).ready(function() {
 		// Generate a snippet of the comment with its author and rating, for the leaderboard
 		var comment = comments[$(this).parent()[0].id];
 		var count = parseInt(id) - 1;
-		var stars = '<p style="display: inline-block; vertical-align: middle;">' + count + '</p>';
+		var stars = '';
 		if (count != 0) {
 			for (var i = 0; i < count; i++) {
 				stars += '<div class="fullStarTable"></div>';

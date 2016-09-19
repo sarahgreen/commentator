@@ -32,7 +32,6 @@ body
     display: inline-block;
     font-family: 'Yeseva One', cursive;
     font-size: 325%;
-    font-weight: bold;
     margin: 20px 0;
     text-align: center;
     width: 100%;
@@ -54,7 +53,6 @@ body
 {
     font-size: 110%;
     font-style: italic;
-    font-weight: bold;
     min-height: 40px;
     padding-top: 6px;
     position: relative;
@@ -175,7 +173,6 @@ a
 .user
 {
     color: #76b3cc;
-    font-weight: bold;
 }
 
 .user, .says
@@ -256,7 +253,8 @@ a
 
 /* Modal Styles */
 
-.modal {
+.modal 
+{
     -moz-transition: opacity 400ms ease-in;
     -webkit-transition: opacity 400ms ease-in;
     background: rgba(0,0,0,0.8);
@@ -272,19 +270,17 @@ a
     z-index: 99999;
 }
 
-.modal:target {
+.modal:target 
+{
     opacity: 1;
     pointer-events: auto;
 }
 
-.modal > div {
-    background: #000;
-    background: -moz-linear-gradient(#fff, #999);
-    background: -o-linear-gradient(#fff, #999);
-    background: -webkit-linear-gradient(#fff, #999);
+.modal > div 
+{
+    background: #fff;
     border-radius: 3px;
     color: #000;
-    font-weight: bold;
     height: 40%;
     margin: 20% auto;
     overflow: scroll;
@@ -306,9 +302,9 @@ a
     font-size: 115%;
 }
 
-.close {
+.close 
+{
     font-size: 16px;
-    font-weight: bold;
     position: absolute;
     right: 4%;
     text-align: center;
@@ -353,7 +349,6 @@ table, th, tr, td
 th
 {
     font-size: 150%;
-    font-weight: bold;
 }
 
 .commentText
